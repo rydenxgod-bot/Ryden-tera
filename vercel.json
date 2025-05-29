@@ -1,7 +1,18 @@
 {
-  "builds": [{ "src": "api.py", "use": "@vercel/python" }],
+  "builds": [
+    {
+      "src": "api.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": ["vercel-build.sh"]
+      }
+    }
+  ],
   "routes": [
     { "src": "/api", "dest": "/api.py" },
     { "src": "/stream", "dest": "/api.py" }
-  ]
+  ],
+  "hooks": {
+    "build": "bash vercel-build.sh"
+  }
 }
